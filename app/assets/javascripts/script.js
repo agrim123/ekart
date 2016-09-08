@@ -5,5 +5,5 @@
     	$('#modal1').closeModal();
     });
     $(".dropdown-button").dropdown();
-    $('.collapsible').collapsible();
+    
   });
