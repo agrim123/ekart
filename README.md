@@ -18,7 +18,7 @@ rake db:migrate
 Make an account on [heroku.com](https://heroku.com)
 Push the code to heroku and make sure code uploads successfully (queries are most welcome)
 
-If you did everything correctly and without errors then congrats you have your own social networking platform. Enjoy :-)
+If you did everything correctly and without errors then congrats you have your own ecommerce platform. Enjoy :-)
 
 ## Contributions
 
