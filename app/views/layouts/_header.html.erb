@@ -1,0 +1,87 @@
+<nav>
+	<div class="nav-wrapper">
+		<%= link_to "Ekart", store_path ,:style=>'font-size:22px'%>
+		<!-- Dropdown Trigger -->
+		<a class='dropdown-button btn' href='#' data-activates='dropdown2'>Categories</a>
+
+		<!-- Dropdown Structure -->
+		<ul id='dropdown2' class='dropdown-content'>
+
+			<% @categories.each do |category| %>
+			<li><a href="#!"><%= category.title.capitalize %></a></li>
+			<% end %>
+		</ul> 
+
+		<ul class="right hide-on-med-and-down">
+			<li> 
+				<%= form_tag(store_path, :method => "get", id: "search-form") do %> 
+				<%= text_field_tag :search, params[:search], placeholder: "Search Store" %>
+				<%= submit_tag "Search", :name => nil ,:style => 'display:none'%>
+				<% end %>
+			</li>
+			<li>
+				<%= form_tag(store_path, :method => "get", id: "search-form") do %>
+				<%= select_tag :category_search, options_from_collection_for_select(Category.all,
+				"title", "title"), :onchange => "this.form.submit();",:class => 'dropdown-button btn',:placeholder =>' Choose Category'%>
+				<%= submit_tag "Search", :name => nil,:style => 'display:none' %>
+
+				<% end %>
+			</li>
+			<% if logged_in? %>
+			<li><%= current_user.name %></li>
+			
+			<!-- Dropdown Trigger -->
+			<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Account<i class="material-icons right">arrow_drop_down</i></a></li>
+			<ul id='dropdown1' class='dropdown-content'>
+				<li>
+					<%= link_to "Profile", current_user %>
+				</li>
+				<li>
+					<%= link_to "Settings", edit_user_path(current_user) %>
+				</li>
+				<li>
+					<%if current_user.admin? %>
+					<%= link_to "All Orders", orders_path %>
+					<%else%>
+					<%= link_to "My Orders", my_orders_path %>
+					<%end%>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<%= link_to "Log out", logout_path, method: "delete" %>
+				</li>
+			</ul>
+			<% else %>
+			<li>
+			<!-- Modal Trigger -->
+			<a class="waves-effect waves-light btn modal-trigger" href="#modal2">Log In</a>
+			<!-- Modal Structure -->
+
+
+			</li>
+				<% end %>
+			</ul>
+		</div>
+	</nav>
+	<div id="modal2" class="modal">
+		<div class="modal-content">
+			<div class="row">
+				<%= form_for(:session, url: login_path) do |f| %>
+				<div class="input-field col s6">
+					<%= f.label :email %>
+					<%= f.email_field :email, class: 'form-control' %>
+				</div>
+				<div class="input-field col s6">
+					<%= f.label :password %>
+					<%= f.password_field :password, class: 'form-control' %>
+				</div>
+				<%= f.submit "Log in", class: "btn btn-primary" %>
+				<% end %>
+				<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+		</div>
+	</div>
+

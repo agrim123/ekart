@@ -1,0 +1,4 @@
+	<%= javascript_include_tag 'materialize' %>
+<%= link_to '<i class="medium material-icons view_module">view_module</i>'.html_safe, dashboard_path ,:class => ' tooltipped', :data =>{:position =>'right',:delay =>"10", :tooltip => 'DASHBOARD'}%>
+<%= link_to '<i class="medium material-icons store">store</i>'.html_safe, store_path ,:class => ' tooltipped', :data =>{:position =>'right',:delay =>"10", :tooltip => 'VIEW AS GUEST'}%>
+<%= link_to '<i class="medium material-icons launch">launch</i>'.html_safe, logout_path , method: "delete",:class => ' tooltipped', :data =>{:position =>'right',:delay =>"10", :tooltip => 'LOGOUT'}%>

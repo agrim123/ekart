@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Depot</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'angular', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'script', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons' %>
+	
+	<%= csrf_meta_tags %>
+</head>
+<body ng-app="ekart" ng-controller="MainCtrl">      
+	<% if logged_in? && current_user.admin? %>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col s1" style="height:100vh">
+				<%= render 'dashboard/side_nav' %>
+			</div>
+			<div class="col s11">
+			<%= render 'layouts/cartbutton' %>
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+	<% else %>
+	<%= render 'layouts/header' %>
+	<%= render 'layouts/cartbutton' %>
+
+	<%= yield %>
+	<% end %>
+
+
+</body>
+</html>

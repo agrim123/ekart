@@ -1,0 +1,61 @@
+<% if @orders.present? %>
+<% @orders.each do |order| %>
+<% if order.user_id == current_user.id  || current_user.admin?%>
+<ul class="collapsible popout" data-collapsible="accordion">
+
+  <li>
+    <div class="collapsible-header">
+      Order ID : <%= order.id %>
+    </div>
+    <div class="collapsible-body">
+      Shipped to :<%= order.address %><br />
+      Payment Method :<%= order.pay_type %><br />
+      Ordered By : <%= order.name %> --- <%= order.email %> <br />
+      <table class="stripped responsize-table bordered">
+        <thead>
+          <tr>
+            <td>
+              Name
+            </td>
+            <td>
+              Quantity
+            </td>
+            <td>
+              Price
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <% order.line_items.each do |item| %>
+          <tr>
+            <td>
+              <%= item.product.title %>
+            </td>
+            <td>
+              <%= item.quantity %>
+            </td>
+            <td>
+              <%= item.total_price %>
+            </td>
+          </tr>
+          <% end %>
+          <tr>
+            <td colspan="2">
+              Total
+            </td>
+            <td>
+              <%= number_to_currency (order.line_items.map(&:total_price).sum) %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      Ordered At :<%= order.updated_at %><br />
+      <hr />
+    </div>
+  </li>
+  <% end %>
+</ul>
+<% end %>
+<% else %>
+<%= render 'shared/no_orders' %>
+<% end %>

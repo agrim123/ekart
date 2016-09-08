@@ -1,0 +1,48 @@
+<% if @products.blank? %>
+<h4>There are no products containing the term <%= params[:search] %>.</h4>
+<% else %>
+<% @products.each do |product| %>
+<div class="col s4">
+	<div class="card">
+		<div class="card-image waves-effect waves-block waves-light">
+			<% if logged_in? && current_user.admin? %>
+			<div class="row right-align">
+				<%= link_to '<i class="material-icons open_in_new">open_in_new</i>'.html_safe, product %>	
+				<%= link_to '<i class="material-icons mode_edit">mode_edit</i>'.html_safe, edit_product_path(product) %>
+				<%= link_to '<i class="material-icons delete">delete</i>'.html_safe, product, method: :delete, data: { confirm: 'Are you sure?' }  %>
+			</div>
+			<% end %>
+			    <%= image_tag product.picture.url if product.picture? %>
+
+		</div>
+		<div class="card-content">
+			<span class="card-title activator grey-text text-darken-4"><%= product.title %><i class="material-icons right">more_vert</i></span>
+			<p><a href="#"><%= product.company %></a></p>
+		</div>
+		<div class="card-action">
+			<%= number_to_currency(product.price) %>	
+			<%= button_to 'Add to Cart', line_items_path(product_id:product), remote:  true, :class => 'waves-effect waves-light btn product_add',:onclick => "Materialize.toast('Product was successfully added to your cart !!', 1000)"%>
+
+		</div>
+		<div class="card-reveal">
+			<span class="card-title grey-text text-darken-4"><%= product.title %><i class="material-icons right">close</i></span>
+			<p style="word-wrap:break-word"><%= product.description %></p>
+			<%= product.rating %>
+			<p>Tags :: <%=product.tags.gsub(/\s+/m, ' ').strip.split(" ") %></p>
+			<p>Category :: <%=product.category %></p>
+		</div>
+	</div>
+</div>
+<% end %>
+<% if logged_in? && current_user.admin? %>
+<a href="<%=new_product_path%>" class="newproduct">
+	<div class="col s4">
+		<div class="card">
+			<div class="waves-effect waves-block waves-light" style="padding:150px;text-align:center;font-size:60px">
+				+
+			</div>
+		</div>
+	</div>
+</a>
+<% end %>
+<% end %>

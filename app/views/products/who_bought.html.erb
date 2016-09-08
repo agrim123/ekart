@@ -1,0 +1,46 @@
+<% @product.orders.each do |order| %>
+Order ID : <%= order.id %> <br />
+Shipped to :<%= order.address %><br />
+Payment Method :<%= order.pay_type %><br />
+Ordered By : <%= order.name %> --- <%= order.email %> <br />
+<table class="stripped responsize-table bordered">
+  <thead>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        Quantity
+      </td>
+      <td>
+        Price
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% order.line_items.each do |item| %>
+    <tr>
+      <td>
+        <%= item.product.title %>
+      </td>
+      <td>
+        <%= item.quantity %>
+      </td>
+      <td>
+        <%= item.total_price %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan="2">
+        Total
+      </td>
+      <td>
+      <%= number_to_currency (order.line_items.map(&:total_price).sum) %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Ordered At :<%= order.updated_at %><br />
+<hr />
+<%end %>
