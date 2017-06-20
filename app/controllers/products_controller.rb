@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :admin_user, only: [:index, :edit, :update, :destroy]
-  
+
 
   # GET /products
   # GET /products.json
@@ -52,6 +52,7 @@ class ProductsController < ApplicationController
       end
     end
   end
+
   def who_bought
     @product = Product.find(params[:id])
     @latest_order = @product.orders.order(:updated_at).last
@@ -62,6 +63,7 @@ class ProductsController < ApplicationController
       end
     end
   end
+
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
@@ -74,28 +76,30 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params.require(:product).permit(:title, :description, :image_url, :price, :company, :rating,:tags,:category,:picture)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def product_params
+    params.require(:product).permit(:title, :description, :image_url, :price, :company, :rating,:tags,:category,:picture)
+  end
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "please log in"
+      redirect_to login_url
     end
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "please log in"
-        redirect_to login_url
-      end
-    end
-      # Confirms the correct user.
-      def correct_user
-        @user = User.find(params[:id])
-        redirect_to(store_url) unless current_user?(@user)
-      end
-      def admin_user
-        redirect_to(store_url) unless current_user.admin?
-      end
-    end
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(store_url) unless current_user?(@user)
+  end
+
+  def admin_user
+    redirect_to(store_url) unless current_user.admin?
+  end
+end

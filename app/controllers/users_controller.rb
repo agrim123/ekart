@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @categories = Category.all
     @users = User.all
   end
+
   def show
     @categories = Category.all
     @user = User.find(params[:id])
@@ -28,16 +29,19 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
   def destroy
     @categories = Category.all
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to users_url
   end
+
   def edit
     @categories = Category.all
     @user = User.find(params[:id])
   end
+
   def update
     @categories = Category.all
     @user = User.find(params[:id])
@@ -55,6 +59,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password,
      :password_confirmation)
   end
+
   def logged_in_user
     unless logged_in?
       store_location
@@ -62,12 +67,14 @@ class UsersController < ApplicationController
       redirect_to login_url
     end
   end
-      # Confirms the correct user.
-      def correct_user
-        @user = User.find(params[:id])
-        redirect_to(store_url) unless current_user?(@user)
-      end
-      def admin_user
-        redirect_to(store_url) unless current_user.admin?
-      end
-    end
+
+  # Confirms the correct user.
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(store_url) unless current_user?(@user)
+  end
+
+  def admin_user
+    redirect_to(store_url) unless current_user.admin?
+  end
+end

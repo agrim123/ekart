@@ -87,23 +87,25 @@ end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type,:contact,:user_id)
-    end
-    def admin_user
-      redirect_to(store_url) unless current_user.admin?
-    end
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "please log in"
-        redirect_to login_url
-      end
-    end 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
   end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.require(:order).permit(:name, :address, :email, :pay_type,:contact,:user_id)
+  end
+
+  def admin_user
+    redirect_to(store_url) unless current_user.admin?
+  end
+
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "please log in"
+      redirect_to login_url
+    end
+  end
+end

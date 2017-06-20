@@ -2,6 +2,7 @@ class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   before_action :admin_user, only: [:index, :edit, :update]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
+
   # GET /carts
   # GET /carts.json
   def index
@@ -64,21 +65,22 @@ class CartsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cart
-      @cart = Cart.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cart_params
-      params.fetch(:cart, {})
-    end
-
-    def invalid_cart
-      logger.error "Attempt to access invalid cart #{params[:id]}"
-      redirect_to store_url, notice: 'Invalid Cart'
-    end
-    def admin_user
-      redirect_to(store_url) unless current_user.admin?
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cart
+    @cart = Cart.find(params[:id])
   end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cart_params
+    params.fetch(:cart, {})
+  end
+
+  def invalid_cart
+    logger.error "Attempt to access invalid cart #{params[:id]}"
+    redirect_to store_url, notice: 'Invalid Cart'
+  end
+
+  def admin_user
+    redirect_to(store_url) unless current_user.admin?
+  end
+end
