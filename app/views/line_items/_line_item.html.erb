@@ -1,20 +1,19 @@
 <% if line_item == @current_item %>
 <tr id="current_item">
-	<% else %>
-	<tr>
-		<% end %>
-		<td>
-			<%= line_item.product.title %>
-		</td>
-		<td>
-			<%= line_item.quantity %>
-			
-		</td>
-		<td class="line_item_price">
-			<%= number_to_currency(line_item.quantity * line_item.product.price) %>
-		</td>
-		<td>
-			<i class="material-icons right" style="cursor:pointer">close</i>
-			<%= button_to 'Delete', line_item,method: :delete %>
-		</td>
-	</tr>
+  <% else %>
+  <tr>
+    <% end %>
+    <td>
+      <%= line_item.product.title %>
+    </td>
+    <td>
+      <%= line_item.quantity %>
+    </td>
+    <td class="line_item_price">
+      <%= number_to_currency(line_item.quantity * line_item.product.price) %>
+    </td>
+    <td>
+      <i class="material-icons right" style="cursor:pointer">close</i>
+      <%= button_to 'Delete', line_item,method: :delete %>
+    </td>
+  </tr>

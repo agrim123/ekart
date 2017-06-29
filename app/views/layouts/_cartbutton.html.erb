@@ -1,12 +1,12 @@
 <div class="row">
-<div class="col offset-s10 s2">
-<% flash.each do |message_type, message| %>
-<div class="alert alert-<%= message_type %>"><%= message %></div>
-<% end %>
-<%if @cart %>
-<%= hidden_div_if(@cart.line_items.empty?, id:'cart') do %>
-<%= render @cart %>
-<% end %>
-<% end %>
-</div>
+  <div class="col offset-s10 s2">
+    <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <%if @cart %>
+    <%= hidden_div_if(@cart.line_items.empty?, id:'cart') do %>
+    <%= render @cart %>
+    <% end %>
+    <% end %>
+  </div>
 </div>

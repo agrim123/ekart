@@ -1,122 +1,119 @@
-
 <div class="row">
-	<div class="col s4">
-		<div class="card blue-grey darken-1 hoverable">
-			<div class="card-content white-text">
-				<div class="card-title center-align">
-					<p>
-						<i class="medium material-icons shopping_cart">
-							shopping_cart
-						</i>
-					</p>
-					<p style="text-transform: uppercase;">
-						Orders
-					</p>
-					<p>
-						<%= @orders.count %>
-					</p>
-				</div>
-				<div>
-					<p>
-						I am a very simple card. I am good at containing small bits of information.
-						I am convenient because I require little markup to use effectively.
-					</p>
-				</div>
-				<div class="card-action right-align">
-					<%= link_to "All Orders", orders_path %>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col s4">
-		<div class="card blue-grey darken-1 hoverable">
-			<div class="card-content white-text">
-				<div class="card-title center-align">
-					<p>
-						<i class="medium material-icons perm_identity">
-							perm_identity
-						</i>
-					</p>
-					<p style="text-transform: uppercase;">
-						Users
-					</p>
-					<p>
-						<%= @users.count %>
-					</p>
-					
-				</div>
-				<div>
-					<p>
-						I am a very simple card. I am good at containing small bits of information.
-						I am convenient because I require little markup to use effectively.
-					</p>
-				</div>
-				<div class="card-action right-align">
-					<%= link_to "All Users", users_path %>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col s4">
-		<div class="card blue-grey darken-1 hoverable">
-			<div class="card-content white-text">
-				<div class="card-title center-align">
-					<p>
-						<i class="medium material-icons view_carousel">
-							view_carousel
-						</i>
-					</p>
-					<p style="text-transform: uppercase;">
-						Products
-					</p>
-					<p>
-						<%= @products.count %>
-					</p>
-					
-				</div>
-				<div>
-					<p>
-						I am a very simple card. I am good at containing small bits of information.
-						I am convenient because I require little markup to use effectively.
-					</p>
-				</div>
-				<div class="card-action right-align">
-					<%= link_to "All Products", products_path %>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col s4">
-		<div class="card blue-grey darken-1 hoverable">
-			<div class="card-content white-text">
-				<div class="card-title center-align">
-					<p>
-						<i class="medium material-icons clear_all">
-							clear_all
-						</i>
-					</p>
-					<p style="text-transform: uppercase;">
-						Categories
-					</p>
-					<p>
-						<%= @categories.count %>
-					</p>
-					
-				</div>
-				<div>
-					<p>
-						I am a very simple card. I am good at containing small bits of information.
-						I am convenient because I require little markup to use effectively.
-					</p>
-				</div>
-				<div class="card-action right-align">
-					<%= link_to "All Categories", categories_path %>
-					
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="col s4">
+    <div class="card blue-grey darken-1 hoverable">
+     <div class="card-content white-text">
+      <div class="card-title center-align">
+        <p>
+          <i class="medium material-icons shopping_cart">
+            shopping_cart
+          </i>
+        </p>
+        <p style="text-transform: uppercase;">
+          Orders
+        </p>
+        <p>
+          <%= @orders.count %>
+        </p>
+      </div>
+      <div>
+       <p>
+        I am a very simple card. I am good at containing small bits of information.
+        I am convenient because I require little markup to use effectively.
+      </p>
+    </div>
+    <div class="card-action right-align">
+      <%= link_to "All Orders", orders_path %>
+    </div>
+  </div>
+</div>
+</div>
+<div class="col s4">
+  <div class="card blue-grey darken-1 hoverable">
+   <div class="card-content white-text">
+    <div class="card-title center-align">
+      <p>
+        <i class="medium material-icons perm_identity">
+          perm_identity
+        </i>
+      </p>
+      <p style="text-transform: uppercase;">
+        Users
+      </p>
+      <p>
+        <%= @users.count %>
+      </p>
+
+    </div>
+    <div>
+     <p>
+      I am a very simple card. I am good at containing small bits of information.
+      I am convenient because I require little markup to use effectively.
+    </p>
+  </div>
+  <div class="card-action right-align">
+   <%= link_to "All Users", users_path %>
+
+ </div>
+</div>
+</div>
+</div>
+<div class="col s4">
+  <div class="card blue-grey darken-1 hoverable">
+   <div class="card-content white-text">
+    <div class="card-title center-align">
+      <p>
+        <i class="medium material-icons view_carousel">
+          view_carousel
+        </i>
+      </p>
+      <p style="text-transform: uppercase;">
+        Products
+      </p>
+      <p>
+        <%= @products.count %>
+      </p>
+
+    </div>
+    <div>
+     <p>
+      I am a very simple card. I am good at containing small bits of information.
+      I am convenient because I require little markup to use effectively.
+    </p>
+  </div>
+  <div class="card-action right-align">
+   <%= link_to "All Products", products_path %>
+
+ </div>
+</div>
+</div>
+</div>
+<div class="col s4">
+  <div class="card blue-grey darken-1 hoverable">
+   <div class="card-content white-text">
+    <div class="card-title center-align">
+     <p>
+      <i class="medium material-icons clear_all">
+        clear_all
+      </i>
+    </p>
+    <p style="text-transform: uppercase;">
+      Categories
+    </p>
+    <p>
+      <%= @categories.count %>
+    </p>
+
+  </div>
+  <div>
+   <p>
+    I am a very simple card. I am good at containing small bits of information.
+    I am convenient because I require little markup to use effectively.
+  </p>
+</div>
+<div class="card-action right-align">
+  <%= link_to "All Categories", categories_path %>
+</div>
+</div>
+</div>
+</div>
 </div>
