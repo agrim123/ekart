@@ -36,7 +36,7 @@ Ordered By : <%= order.name %> --- <%= order.email %> <br />
         Total
       </td>
       <td>
-      <%= number_to_currency (order.line_items.map(&:total_price).sum) %>
+        <%= number_to_currency (order.line_items.map(&:total_price).sum) %>
       </td>
     </tr>
   </tbody>

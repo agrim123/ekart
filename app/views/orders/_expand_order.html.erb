@@ -1,16 +1,16 @@
 <p>
-	<strong>Name:</strong>
-	<%= @order.name %>
+  <strong>Name:</strong>
+  <%= @order.name %>
 </p>
 
 <p>
-	<strong>Address:</strong>
-	<%= @order.address %>
+  <strong>Address:</strong>
+  <%= @order.address %>
 </p>
 
 <p>
-	<strong>Email:</strong>
-	<%= @order.email %>
+  <strong>Email:</strong>
+  <%= @order.email %>
 </p>
 <p>
   <strong>Contact Number:</strong>
@@ -18,8 +18,8 @@
 </p>
 
 <p>
-	<strong>Pay type:</strong>
-	<%= @order.pay_type %>
+  <strong>Pay type:</strong>
+  <%= @order.pay_type %>
 </p>
 <table class="stripped responsize-table bordered">
   <thead>
@@ -54,7 +54,7 @@
         Total
       </td>
       <td>
-      <%= number_to_currency (@order.line_items.map(&:total_price).sum) %>
+        <%= number_to_currency (@order.line_items.map(&:total_price).sum) %>
       </td>
     </tr>
   </tbody>
